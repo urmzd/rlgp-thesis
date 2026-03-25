@@ -1,0 +1,36 @@
+name: Build & Release
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Install TeX Live
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y --no-install-recommends texlive-full
+
+      - name: Compile PDF
+        run: |
+          latexmk -pdf -pdflatex="pdflatex -interaction=nonstopmode" thesis.tex
+
+      - name: Create or update release
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          gh release delete latest --yes 2>/dev/null || true
+          gh release create latest \
+            --title "Reinforced Linear Genetic Programming" \
+            --notes "Compiled thesis PDF. Updated on every push to main." \
+            --latest \
+            thesis.pdf
