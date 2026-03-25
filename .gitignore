@@ -1,0 +1,15 @@
+arxiv_build/
+arxiv_submission.tar.gz
+*.aux
+*.log
+*.out
+*.toc
+*.lof
+*.lot
+*.loa
+*.lol
+*.blg
+*.bbl
+*.pdf
+*.synctex.gz
+.DS_Store
