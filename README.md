@@ -1,7 +1,7 @@
 <p align="center">
   <h1 align="center">rlgp-thesis</h1>
   <p align="center">
-    LaTeX source for <em>Reinforced Linear Genetic Programming</em>, an honours thesis exploring the integration of Q-Learning with Linear Genetic Programming.
+    LaTeX source for <em>Reinforced Linear Genetic Programming</em>, a BCS honours thesis exploring the integration of Q-Learning with Linear Genetic Programming.
     <br /><br />
     <a href="https://github.com/urmzd/rlgp-thesis/releases/latest/download/thesis.pdf">Download PDF</a>
     &middot;
@@ -48,10 +48,11 @@ bash draft_package.sh
 ## Citation
 
 ```bibtex
-@mastersthesis{mukhammadnaim2023rlgp,
+@thesis{mukhammadnaim2023rlgp,
   title  = {Reinforced Linear Genetic Programming},
   author = {Mukhammadnaim, Urmzd},
   school = {Dalhousie University},
+  type   = {Bachelor's Honours Thesis},
   year   = {2023}
 }
 ```
