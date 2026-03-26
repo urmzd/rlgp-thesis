@@ -22,7 +22,7 @@ jobs:
 
       - name: Compile PDF
         run: |
-          latexmk -pdf -bibtex -pdflatex="pdflatex -interaction=nonstopmode" thesis.tex
+          latexmk -pdf -bibtex -f -pdflatex="pdflatex -interaction=nonstopmode" thesis.tex
 
       - name: Create or update release
         env:
