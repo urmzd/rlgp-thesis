@@ -32,6 +32,6 @@ rm -f *.aux *.log *.out *.toc *.lof *.lot *.loa *.lol *.blg *.pdf
 
 echo "Creating archive..."
 cd ..
-tar -czvf "$OUTPUT_FILE" -C "$BUILD_DIR" .
+COPYFILE_DISABLE=1 tar -czvf "$OUTPUT_FILE" -C "$BUILD_DIR" .
 
 echo "Done. Submission package at $OUTPUT_FILE"
