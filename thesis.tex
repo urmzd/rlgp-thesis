@@ -1,4 +1,20 @@
-\documentclass[12pt, final]{dalcsthesis}
+% arXiv HTML (LaTeXML) cannot interpret dalcsthesis.cls and drops the body.
+% Under LaTeXML, fall back to report and stub the class-only macros.
+\ifdefined\LaTeXMLversion
+  \documentclass[12pt]{report}
+  \newcommand{\bcshon}{}
+  \newcommand{\defenceday}[1]{}
+  \newcommand{\defencemonth}[1]{}
+  \newcommand{\defenceyear}[1]{}
+  \newcommand{\convocation}[2]{}
+  \newcommand{\supervisor}[1]{}
+  \newcommand{\reader}[1]{}
+  \newcommand{\frontmatter}{}
+  \newcommand{\mainmatter}{}
+  \newenvironment{acknowledgements}{\chapter*{Acknowledgements}}{}
+\else
+  \documentclass[12pt, final]{dalcsthesis}
+\fi
 \usepackage{graphicx}
 \usepackage{subcaption}
 \usepackage{amsmath}
@@ -21,6 +37,23 @@
   frame=single,
   showstringspaces=false
 }
+
+% Results tables: \resultstable{caption}{label}{rows}, called from tables/*.tex.
+% LaTeXML drops \label inside longtable, so HTML gets a table float instead.
+\newcommand{\resultsheader}{\textbf{Generation} & \textbf{Max} & \textbf{Mean} & \textbf{Median} & \textbf{Min} \\\hline}
+\ifdefined\LaTeXMLversion
+  \newcommand{\resultstable}[3]{%
+    \begin{table}[!htb]\centering\caption{#1}\label{#2}%
+    \begin{tabular}{|l|l|l|l|l|}\hline\resultsheader#3\end{tabular}%
+    \end{table}}
+\else
+  \newcommand{\resultstable}[3]{%
+    \begin{longtable}{|l|l|l|l|l|}
+    \caption{#1}\label{#2}\\\hline\resultsheader\endfirsthead
+    \hline\resultsheader\endhead
+    \hline\endfoot
+    #3\end{longtable}}
+\fi
 
 \graphicspath{{assets/experiments/aggregate_results/figures/}{assets/experiments/baseline/figures/}}
 
